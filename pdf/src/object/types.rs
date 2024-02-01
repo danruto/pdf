@@ -944,6 +944,11 @@ pub struct SignatureReferenceDictionary {
     pub other: Dictionary
 }
 
+#[derive(Object, ObjectWrite, Debug, Clone, DataSize, Default)]
+pub struct PdfAnnotAnchor {
+    #[pdf(key="URI")]
+    pub uri: Option<PdfString>,
+}
 
 #[derive(Object, ObjectWrite, Debug, Clone, DataSize)]
 #[pdf(Type="Annot?")]
@@ -977,6 +982,9 @@ pub struct Annot {
 
     #[pdf(key="Border")]
     pub border: Option<Primitive>,
+
+    #[pdf(key="A")]
+    pub anchor: Option<MaybeRef<PdfAnnotAnchor>>,
 }
 
 #[derive(Object, ObjectWrite, Debug, DataSize, Clone)]
